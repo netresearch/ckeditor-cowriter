@@ -4,13 +4,25 @@
 
 This plugin generates content with the help of artificial intelligence. It is based on the [CKEditor 4](http://ckeditor.com/). It uses the [OpenAI API](https://beta.openai.com/) to generate text.
 
-## Installation
+## Instalation
+
+### Installation from source
 
 1. Download the [latest release](https://github.com/netresearch/ckeditor-cowriter/releases) of the plugin.
 2. Extract the contents of the archive into the CKEditor 4 plugins directory.
 3. Enable the plugin by using the `extraPlugins` configuration setting. For example:
 
         config.extraPlugins = 'cowriter';
+
+### Installation from CDN
+
+1. Add the following script tag to your HTML page:
+
+        <script src="https://netresearch.github.io/ckeditor-cowriter/plugin.js"></script>
+
+2. Enable the plugin by using the `extraPlugins` configuration setting. For example:
+
+            config.extraPlugins = 'cowriter';
 
 ## Configuration
 
