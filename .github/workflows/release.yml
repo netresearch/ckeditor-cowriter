@@ -38,7 +38,7 @@ jobs:
           scope: '@netresearch'
 
       - name: ☁️ Publish to GitHub Package Registry
-        run: pnpm publish --no-git-check
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
