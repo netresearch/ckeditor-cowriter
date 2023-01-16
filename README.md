@@ -1,4 +1,4 @@
-# CKEditor 4 Plugin - Cowriter
+# CKEditor 4 Plugin - Cowriter 🤖
 
 [![Release](https://github.com/netresearch/ckeditor-cowriter/actions/workflows/release.yml/badge.svg)](https://github.com/netresearch/ckeditor-cowriter/actions/workflows/release.yml)
 
@@ -29,7 +29,7 @@ You need to define your OpenAI credentials.
 
 ## License
 
-Licensed under the terms of the [GNU General Public License](http://www.gnu.org/licenses/gpl.html), version 2 or later.
+Licensed under the terms of the [GNU General Public License](http://www.gnu.org/licenses/gpl.html), version 3 or later.
 
 ## Credits
 
@@ -48,10 +48,12 @@ Licensed under the terms of the [GNU General Public License](http://www.gnu.org/
 
 We welcome contributions to this project. Please see our [contribution guidelines](CONTRIBUTING.md) for details.
 
-## Security
+### Security
 
-If you discover any security related issues, please email info@netresearch.de instead of using the issue tracker.
+If you discover any security related issues, please email <info@netresearch.de> instead of using the issue tracker!
 
-## Contact
+### Contact
 
-[Netresearch](https://www.netresearch.de/)
+[Netresearch](https://www.netresearch.de/), the company behind this plugin, is a leading European provider of digital solutions and services for the eCommerce industry. We are a team of eCommerce experts, developers, designers, project managers, and consultants. We are passionate about eCommerce and we love to share our knowledge with the community.
+
+> [Twitter](https://twitter.com/netresearch) | [LinkedIn](https://www.linkedin.com/company/netresearch/) | [Facebook](https://www.facebook.com/netresearch/) | [Xing](https://www.xing.com/companies/netresearchdttgmbh) | [YouTube](https://www.youtube.com/@netresearch)
