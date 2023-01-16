@@ -6,14 +6,18 @@ on:
       - '*'
 
 jobs:
-  # Publish on NPM registry
-  build:
-    name: 📦 Release
+  npm:
+    name: 📦 Release on NPM
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: ⸙ Checkout
         uses: actions/checkout@v3
-      - name: Setup Node.js
+      - name: 👷 Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+          cache: true
+      - name:  ⚙️ Setup Node.js
         uses: actions/setup-node@v3
         with:
           registry-url: https://registry.npmjs.org/
@@ -21,11 +25,6 @@ jobs:
           scope: '@netresearch'
           tag: latest
           access: public
-      - name: 👷 Install pnpm ⚙️
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
-          cache: true
       - name: ⚡ Install dependencies
         run: pnpm install --frozen-lockfile
       - name: 🔨 Build
@@ -35,9 +34,8 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  # Create GitHub release
-  release:
-    name: 🚀 GitHub Release
+  github:
+    name: 🚀 Release on GitHub
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
