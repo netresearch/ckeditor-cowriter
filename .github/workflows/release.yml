@@ -24,7 +24,7 @@ jobs:
       - name: 👷 Install pnpm
         run: npm install -g pnpm
       - name: ⚡ Install dependencies
-        run: pnpm ci
+        run: pnpm install --frozen-lockfile
       - name: 🔨 Build
         run: pnpm build
       - name: ☁️ Publish on NPM
