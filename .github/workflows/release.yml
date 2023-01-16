@@ -1,4 +1,4 @@
-name: Publish release
+name: 📦 Release
 
 on:
   push:
@@ -7,7 +7,8 @@ on:
 
 jobs:
   # Publish on NPM registry
-  publish-npm:
+  build:
+    name: 📦 Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -16,9 +17,17 @@ jobs:
         uses: actions/setup-node@v3
         with:
           registry-url: https://registry.npmjs.org/
-          node-version: 16
-      - name: Publish on NPM
-        run: npm publish
+          node-version: 18
+          scope: "@netresearch"
+          tag: latest
+          access: public
+          
+      - name: ⚡ Install dependencies
+        run: pnpm ci
+      - name: 🔨 Build
+        run: pnpm build 
+      - name: ☁️ Publish on NPM
+        run: pnpm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 

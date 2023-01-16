@@ -41,7 +41,10 @@
         "dev": "vite",
         "build": "tsc && vite build",
         "preview": "vite preview",
-        "release": "pnpm run build && pnpm publish"
+        "release": "pnpm run build && pnpm publish",
+        "release:patch": "pnpm run build && pnpm version patch",
+        "release:minor": "pnpm run build && pnpm version minor",
+        "release:major": "pnpm run build && pnpm version major"
     },
     "devDependencies": {
         "typescript": "^4.9.3",
