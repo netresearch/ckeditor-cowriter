@@ -30,7 +30,7 @@ jobs:
       - name: 🔨 Build
         run: pnpm build
       - name: ☁️ Publish on NPM
-        run: pnpm publish --access public --tag latest --no-git-checks
+        run: pnpm publish --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
