@@ -21,14 +21,17 @@ jobs:
           scope: '@netresearch'
           tag: latest
           access: public
-      - name: 👷 Install pnpm
-        run: npm install -g pnpm
+      - name: 👷 Install pnpm ⚙️
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+          cache: true
       - name: ⚡ Install dependencies
         run: pnpm install --frozen-lockfile
       - name: 🔨 Build
         run: pnpm build
       - name: ☁️ Publish on NPM
-        run: pnpm publish
+        run: pnpm publish --access public --tag latest --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
