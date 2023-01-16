@@ -54,7 +54,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: 📦 Package
-        run: yarn pack --filename=package.tgz
+        run: yarn pack --filename=ckeditor-cowriter.tgz
       - name: 📎 Generate release page
         uses: scottbrenner/generate-changelog-action@master
         id: generate_changelog
@@ -64,6 +64,6 @@ jobs:
           body: |
             ${{ steps.generate_changelog.outputs.changelog }}
           files: |
-            package.tgz
+            ckeditor-cowriter.tgz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
