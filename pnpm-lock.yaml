@@ -1,8 +1,8 @@
 lockfileVersion: 5.4
 
 specifiers:
-  typescript: ^4.9.3
-  vite: ^4.0.0
+  typescript: ^4.9.4
+  vite: ^4.0.4
 
 devDependencies:
   typescript: 4.9.4
@@ -351,3 +351,5 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+publishDirectory: dist
