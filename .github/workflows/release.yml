@@ -42,7 +42,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  github:
+  github-release:
     name: 🚀 Release on GitHub
     runs-on: ubuntu-latest
     steps:
@@ -66,3 +66,44 @@ jobs:
             ckeditor-cowriter.tgz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: './dist/'
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
+
+  github-pages:
+    name: 📄 Deploy to GitHub Pages
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [19.x]
+    steps:
+      - name: ⸙ Checkout
+        uses: actions/checkout@v3
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: 👷 Install pnpm
+        run: npm install -g pnpm
+      - name: ⚡ Install dependencies
+        run: pnpm install --no-frozen-lockfile
+      - name: 🔨 Build
+        run: pnpm build
+      - name: 📦 Package for GitHub Pages
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: './dist/'
+      - name: 📄 Setup Pages
+        uses: actions/configure-pages@v2
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
