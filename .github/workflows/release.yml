@@ -23,7 +23,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           registry-url: https://registry.npmjs.org/
-          node-version: 18
+          node-version: 16
           scope: '@netresearch'
           access: public
           tag: latest
@@ -39,7 +39,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - uses: actions/setup-node@v1
         with:
-          node-version: '18.x'
+          node-version: 16
           registry-url: 'https://npm.pkg.github.com'
           scope: '@netresearch'
       - name: ☁️ Publish to GitHub Package Registry
@@ -48,8 +48,8 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   github-release:
-    needs: npm
     name: 🚀 Release on GitHub
+    needs: npm
     runs-on: ubuntu-latest
     steps:
       - name: ⸙ Checkout
@@ -74,8 +74,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   github-pages:
-    needs: [npm]
     name: 📄 Deploy to GitHub Pages
+    needs: [npm]
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -87,7 +87,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           registry-url: https://registry.npmjs.org/
-          node-version: 18
+          node-version: 16
           scope: '@netresearch'
           access: public
           tag: latest
