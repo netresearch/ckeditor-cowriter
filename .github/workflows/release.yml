@@ -6,15 +6,11 @@ on:
       - '*'
 
 permissions:
-  actions: write
-  checks: write
   contents: write
   deployments: write
-  issues: write
+  id-token: write
   packages: write
-  pull-requests: write
-  repository-projects: write
-  security-events: write
+  pages: write
   statuses: write
 
 jobs:
