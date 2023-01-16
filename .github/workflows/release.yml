@@ -34,14 +34,27 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "18.x"
+          registry-url: "https://npm.pkg.github.com"
+          scope: "@netresearch"
+
+      - name: ☁️ Publish to GitHub Package Registry
+        run: pnpm publish --access=public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   github:
     name: 🚀 Release on GitHub
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: ⸙ Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+      - name: 📦 Package
+        run: yarn pack --filename=package.tgz
       - name: 📎 Generate Changelog
         uses: scottbrenner/generate-changelog-action@master
         id: generate_changelog
@@ -52,3 +65,14 @@ jobs:
             ${{ steps.generate_changelog.outputs.changelog }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: ↑ Upload package to GitHub Releases
+        if: steps.update_tag.outputs.tagname
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        with:
+          upload_url: ${{ steps.generate_changelog.outputs.upload_url }}
+          asset_path: ./package.tgz
+          asset_name: package.tgz
+          asset_content_type: application/tgz
