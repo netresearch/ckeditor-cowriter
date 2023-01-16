@@ -1,0 +1,54 @@
+{
+    "name": "@netresearch/ckeditor-cowriter",
+    "description": "Use AI to help you writing with CKEditor 4",
+    "version": "0.0.1",
+    "type": "module",
+    "license": "GPL-3.0-or-later",
+    "private": false,
+    "authors": [
+        {
+            "name": "André Lademann",
+            "email": "andre.lademann@netresearch.de"
+        }
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/netresearch/ckeditor-cowriter"
+    },
+    "bugs": {
+        "url": "https://github.com/netresearch/ckeditor-cowriter/issues"
+    },
+    "keywords": [
+        "ckeditor",
+        "ckeditor4",
+        "ai",
+        "artificial intelligence",
+        "writing",
+        "cowriter"
+    ],
+    "main": "dist/plugin.js",
+    "module": "./dist/plugin.js",
+    "files": [
+        "dist"
+    ],
+    "exports": {
+        ".": {
+            "import": "./dist/assets/plugin.js",
+            "require": "./dist/assets/plugin.umd.js"
+        }
+    },
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview",
+        "release": "pnpm run build && pnpm publish"
+    },
+    "devDependencies": {
+        "typescript": "^4.9.3",
+        "vite": "^4.0.0"
+    },
+    "publishConfig": {
+        "access": "public",
+        "registry": "https://registry.npmjs.org/"
+    }
+}
