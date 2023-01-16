@@ -18,8 +18,8 @@ jobs:
           registry-url: https://registry.npmjs.org/
           node-version: 18
           scope: '@netresearch'
-          tag: latest
           access: public
+          tag: latest
       - name: 👷 Install pnpm
         run: npm install -g pnpm
       - name: ⚡ Install dependencies
@@ -27,7 +27,7 @@ jobs:
       - name: 🔨 Build
         run: pnpm build
       - name: ☁️ Publish on NPM
-        run: pnpm publish --no-git-checks
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 

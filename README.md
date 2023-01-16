@@ -1,5 +1,7 @@
 # CKEditor 4 Plugin - Cowriter
 
+[![Release](https://github.com/netresearch/ckeditor-cowriter/actions/workflows/release.yml/badge.svg)](https://github.com/netresearch/ckeditor-cowriter/actions/workflows/release.yml)
+
 This plugin generates content with the help of artificial intelligence. It is based on the [CKEditor 4](http://ckeditor.com/). It uses the [OpenAI API](https://beta.openai.com/) to generate text.
 
 ## Installation
@@ -33,11 +35,8 @@ Licensed under the terms of the [GNU General Public License](http://www.gnu.org/
 
 ## Credits
 
-This plugin is based on the [CKEditor 4 Plugin - GPT-3](https://github.com/netresearch/ckeditor-cowriter/releases) by [Netresearch](https://www.netresearch.de/).
-
-## Contact
-
-[Netresearch](https://www.netresearch.de/)
+- All Contributors
+- This plugin is based on the [CKEditor 4 Plugin - GPT-3](https://github.com/netresearch/ckeditor-cowriter/releases) by [Netresearch](https://www.netresearch.de/).
 
 ## TODO
 
@@ -55,7 +54,6 @@ We welcome contributions to this project. Please see our [contribution guideline
 
 If you discover any security related issues, please email info@netresearch.de instead of using the issue tracker.
 
-## Credits
+## Contact
 
--   [All Contributors](../../contributors)
-
+[Netresearch](https://www.netresearch.de/)
