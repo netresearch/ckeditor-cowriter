@@ -16,11 +16,9 @@ This plugin generates content with the help of artificial intelligence. It is ba
 
 You need to define your OpenAI credentials.
 
-    ```javascript
     CKEDITOR.config.cowriter = {
         apiKey
     };
-    ```
 
 ## Usage
 

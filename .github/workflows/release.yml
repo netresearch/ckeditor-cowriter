@@ -38,7 +38,7 @@ jobs:
           scope: '@netresearch'
 
       - name: ☁️ Publish to GitHub Package Registry
-        run: pnpm publish --access=public
+        run: pnpm publish --no-git-check
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -58,6 +58,8 @@ jobs:
       - name: 🗞 Create Release
         uses: softprops/action-gh-release@v1
         with:
+          generate_release_notes: true
+          append_body: true
           body: |
             ${{ steps.generate_changelog.outputs.changelog }}
           files: |
