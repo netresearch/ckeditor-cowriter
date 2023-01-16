@@ -5,6 +5,11 @@ on:
     tags:
       - '*'
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   npm:
     name: 📦 Release on NPM
@@ -65,15 +70,6 @@ jobs:
             ckeditor-cowriter.tgz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: './dist/'
-      - name: Setup Pages
-        uses: actions/configure-pages@v2
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
 
   github-pages:
     needs: [npm]
