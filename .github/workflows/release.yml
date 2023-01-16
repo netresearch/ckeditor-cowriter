@@ -30,13 +30,11 @@ jobs:
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - uses: actions/setup-node@v1
         with:
           node-version: '18.x'
           registry-url: 'https://npm.pkg.github.com'
           scope: '@netresearch'
-
       - name: ☁️ Publish to GitHub Package Registry
         run: npm publish
         env:
@@ -78,22 +76,23 @@ jobs:
         uses: actions/deploy-pages@v1
 
   github-pages:
-    needs: [npm, github-release]
+    needs: [npm]
     name: 📄 Deploy to GitHub Pages
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x]
     steps:
       - name: ⸙ Checkout
         uses: actions/checkout@v3
       - name: ⚙️ Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/
+          node-version: 18
+          scope: '@netresearch'
+          access: public
+          tag: latest
       - name: 👷 Install pnpm
         run: npm install -g pnpm
       - name: ⚡ Install dependencies
