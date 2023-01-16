@@ -18,31 +18,33 @@ jobs:
         with:
           registry-url: https://registry.npmjs.org/
           node-version: 18
-          scope: "@netresearch"
+          scope: '@netresearch'
           tag: latest
           access: public
-          
+      - name: 👷 Install pnpm
+        run: npm install -g pnpm
       - name: ⚡ Install dependencies
         run: pnpm ci
       - name: 🔨 Build
-        run: pnpm build 
+        run: pnpm build
       - name: ☁️ Publish on NPM
         run: pnpm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   # Create GitHub release
-  gh-release:
+  release:
+    name: 🚀 GitHub Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Generate Changelog
+      - name: 📎 Generate Changelog
         uses: scottbrenner/generate-changelog-action@master
         id: generate_changelog
-      - name: Create Release
+      - name: 🗞 Create Release
         uses: softprops/action-gh-release@v1
         with:
           body: |
