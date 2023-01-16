@@ -43,6 +43,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   github-release:
+    needs: npm
     name: 🚀 Release on GitHub
     runs-on: ubuntu-latest
     steps:
@@ -77,6 +78,7 @@ jobs:
         uses: actions/deploy-pages@v1
 
   github-pages:
+    needs: [npm, github-release]
     name: 📄 Deploy to GitHub Pages
     environment:
       name: github-pages
@@ -84,7 +86,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [19.x]
+        node-version: [18.x]
     steps:
       - name: ⸙ Checkout
         uses: actions/checkout@v3
