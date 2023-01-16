@@ -17,7 +17,7 @@ jobs:
         with:
           version: latest
           cache: true
-      - name:  ⚙️ Setup Node.js
+      - name: ⚙️ Setup Node.js
         uses: actions/setup-node@v3
         with:
           registry-url: https://registry.npmjs.org/
@@ -26,7 +26,7 @@ jobs:
           tag: latest
           access: public
       - name: ⚡ Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
       - name: 🔨 Build
         run: pnpm build
       - name: ☁️ Publish on NPM
@@ -36,9 +36,9 @@ jobs:
 
       - uses: actions/setup-node@v1
         with:
-          node-version: "18.x"
-          registry-url: "https://npm.pkg.github.com"
-          scope: "@netresearch"
+          node-version: '18.x'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@netresearch'
 
       - name: ☁️ Publish to GitHub Package Registry
         run: pnpm publish --access=public
@@ -55,7 +55,7 @@ jobs:
           fetch-depth: 0
       - name: 📦 Package
         run: yarn pack --filename=package.tgz
-      - name: 📎 Generate Changelog
+      - name: 📎 Generate release page
         uses: scottbrenner/generate-changelog-action@master
         id: generate_changelog
       - name: 🗞 Create Release
@@ -63,16 +63,7 @@ jobs:
         with:
           body: |
             ${{ steps.generate_changelog.outputs.changelog }}
+          files: |
+            package.tgz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: ↑ Upload package to GitHub Releases
-        if: steps.update_tag.outputs.tagname
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-        with:
-          upload_url: ${{ steps.generate_changelog.outputs.upload_url }}
-          asset_path: ./package.tgz
-          asset_name: package.tgz
-          asset_content_type: application/tgz
