@@ -12,11 +12,6 @@ jobs:
     steps:
       - name: ⸙ Checkout
         uses: actions/checkout@v3
-      - name: 👷 Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
-          cache: true
       - name: ⚙️ Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -25,6 +20,8 @@ jobs:
           scope: '@netresearch'
           tag: latest
           access: public
+      - name: 👷 Install pnpm
+        run: npm install -g pnpm
       - name: ⚡ Install dependencies
         run: pnpm install --no-frozen-lockfile
       - name: 🔨 Build
