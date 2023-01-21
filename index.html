@@ -1,13 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/icons/cash-register-color.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/plugin.ts"></script>
-  </body>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.ckeditor.com/4.20.1/standard-all/ckeditor.js"></script> -->
+    <script src="https://cdn.ckeditor.com/4.20.1/basic/ckeditor.js"></script>
+    <title>Ckeditor cowriter plugin</title>
+</head>
+
+<body class="grid grid-rows-2 bg-gray-100 grid-rows-[50px,100vh] dark:bg-gray-800 place-content-stretch">
+
+    <header class="text-gray-200 bg-blue-400">
+        <div class="container mx-auto flex justify-center">
+            <img src="icons/cash-register-color.svg" alt="Cowriter" class="w-[144px] mt-2">
+        </div>
+    </header>
+    <main class="container mx-auto text-gray-200 mt-32 text-center">
+        <h1 class="text-4xl font-thin pb-4">CK Editor plugin Cowriter</h1>
+
+        <p class="mb-6">This plugin generates content with the help of artificial intelligence. It is based on the <a
+                href="http://ckeditor.com/">CKEditor 4</a>. It uses the <a href="https://beta.openai.com/">OpenAI
+                API</a> to generate text.
+        </p>
+        <textarea id="editor" name="editor" rows="10" cols="50"></textarea>
+        <script src="/src/plugin.ts"></script>
+        <script>
+            const OPENAI_KEY = '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'
+            const OPENAI_ORG = 'org-qLLugKuC4nlm4GDPy2QvOHA9'
+
+            // CKeditor 4 settings
+            CKEDITOR.replace('editor', {
+                extraPlugins: 'cowriter',
+                language: 'de',
+                uiColor: '#bbbbbb',
+                height: 350,
+            });
+        </script>
+</body>
+
 </html>

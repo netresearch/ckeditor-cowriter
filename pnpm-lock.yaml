@@ -1,10 +1,12 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@types/ckeditor': ^4.9.10
   typescript: ^4.9.4
   vite: ^4.0.4
 
 devDependencies:
+  '@types/ckeditor': 4.9.10
   typescript: 4.9.4
   vite: 4.0.4
 
@@ -207,6 +209,10 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@types/ckeditor/4.9.10:
+    resolution: {integrity: sha512-dcOPCXM0Cr5Z0i6eF/aW5LvECrS+cdl2Gi7lU+rEUNWby0w9Yl6mBubjrs29OVAducpuZjB4mfDayE+o4/gGdQ==}
+    dev: true
 
   /esbuild/0.16.17:
     resolution: {integrity: sha512-G8LEkV0XzDMNwXKgM0Jwu3nY3lSTwSGY6XbxM9cr9+s0T/qSV1q1JVPBGzm3dcjhCic9+emZDmMffkwgPeOeLg==}

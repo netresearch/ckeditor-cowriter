@@ -47,6 +47,7 @@ Licensed under the terms of the [GNU General Public License](http://www.gnu.org/
 
 - All Contributors
 - This plugin is based on the [CKEditor 4 Plugin - GPT-3](https://github.com/netresearch/ckeditor-cowriter/releases) by [Netresearch](https://www.netresearch.de/).
+- It uses Flaticon's [document](https://www.flaticon.com/) icon.
 
 ## TODO
 
