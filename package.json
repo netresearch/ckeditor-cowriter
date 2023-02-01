@@ -11,6 +11,7 @@
             "email": "andre.lademann@netresearch.de"
         }
     ],
+    "homepage": "https://netresearch.github.io/ckeditor-cowriter/",
     "repository": {
         "type": "git",
         "url": "https://github.com/netresearch/ckeditor-cowriter"

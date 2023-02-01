@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/icons/cash-register-color.svg" />
+    <link rel="icon" type="image/svg+xml" href="./icons/cash-register-color.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- <script src="https://cdn.ckeditor.com/4.20.1/standard-all/ckeditor.js"></script> -->
@@ -28,7 +28,7 @@
             It uses the <a href="https://beta.openai.com/">OpenAI API</a> to generate text.
         </p>
         <textarea id="editor" name="editor" rows="10" cols="50"></textarea>
-        <script type="module" src="/src/plugin.ts"></script>
+        <script type="module" src="./src/plugin.ts"></script>
         <script>
             const OPENAI_KEY = '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'
             const OPENAI_ORG = 'org-qLLugKuC4nlm4GDPy2QvOHA9'
@@ -36,7 +36,6 @@
             // CKeditor 4 settings
             CKEDITOR.replace('editor', {
                 extraPlugins: 'cowriter',
-                language: 'de',
                 uiColor: '#bbbbbb',
                 height: 350,
             });

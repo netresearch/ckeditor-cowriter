@@ -1,5 +1,7 @@
 // @ts-nocheck
-export {}
+export { }
+
+
 
 // Add CKeditor 4 dialog plugin with one input field "cowriter" which add text from openai api.
 CKEDITOR.dialog.add('cowriterDialog', function (editor) {
@@ -15,7 +17,7 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
         contents: [
             {
                 id: 'tab-basic',
-                label: editor.lang.cowriter.tabGeneral,
+                label: editor.lang.cowriter.tabGeneral || 'General',
                 accessKey: 'C',
                 elements: [
                     {
@@ -65,14 +67,14 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
             },
             {
                 id: 'tab-advanced',
-                label: editor.lang.cowriter.tabAdbvanced,
+                label: editor.lang.cowriter.tabAdbvanced || 'Advanced',
                 elements: [
                     // Add select field with options to choose the model from openai api.
                     {
                         type: 'select',
                         id: 'model',
-                        title: editor.lang.cowriter.modelSelction,
-                        label: editor.lang.cowriter.modelSelctionHelp,
+                        title: editor.lang.cowriter.modelSelction || 'Model',
+                        label: editor.lang.cowriter.modelSelctionHelp || 'Model',
                         default: 'text-davinci-003',
                         items: [
                             ['Davinci', 'text-davinci-003'],
@@ -133,3 +135,9 @@ CKEDITOR.plugins.add('cowriter', {
 CKEDITOR.config.keystrokes = [
     [CKEDITOR.ALT + 67, 'cowriter']
 ]
+
+CKEDITOR.plugins.setLang('cowriter', 'de', {
+    tabAdbvanced: 'Erweitert',
+    modelSelction: 'Modell',
+    modelSelctionHelp: 'Wählen Sie das Modell aus, das Sie verwenden möchten.',
+})
