@@ -4,13 +4,15 @@
 
 This plugin generates content with the help of artificial intelligence. It is based on the [CKEditor 4](http://ckeditor.com/). It uses the [OpenAI API](https://beta.openai.com/) to generate text.
 
-## Instalation
+## Installation
 
-### Installation from source
+### Installation with npm
 
-1. Download the [latest release](https://github.com/netresearch/ckeditor-cowriter/releases) of the plugin.
-2. Extract the contents of the archive into the CKEditor 4 plugins directory.
-3. Enable the plugin by using the `extraPlugins` configuration setting. For example:
+1. Install the plugin with npm:
+
+        npm install ckeditor-cowriter   
+
+2. Enable the plugin by using the `extraPlugins` configuration setting. For example:
 
         config.extraPlugins = 'cowriter';
 
@@ -22,15 +24,24 @@ This plugin generates content with the help of artificial intelligence. It is ba
 
 2. Enable the plugin by using the `extraPlugins` configuration setting. For example:
 
-            config.extraPlugins = 'cowriter';
+        config.extraPlugins = 'cowriter';
+
+### Installation from source
+
+1. Download the [latest release](https://github.com/netresearch/ckeditor-cowriter/releases) of the plugin.
+2. Extract the contents of the archive into the CKEditor 4 plugins directory.
+3. Enable the plugin by using the `extraPlugins` configuration setting. For example:
+
+        config.extraPlugins = 'cowriter';
 
 ## Configuration
 
 You need to define your OpenAI credentials.
 
-    CKEDITOR.config.cowriter = {
-        apiKey
-    };
+    ```javascript
+        const OPENAI_KEY = 'YOUR-KEY'
+        const OPENAI_ORG = 'org-YOUR-ORG-KEY'
+    ```
 
 ## Usage
 
@@ -51,10 +62,10 @@ Licensed under the terms of the [GNU General Public License](http://www.gnu.org/
 
 ## TODO
 
+- [x] Add documentation
+- [x] Add configuration options
+- [x] Add support for other OpenAI APIs
 - [ ] Add tests
-- [ ] Add documentation
-- [ ] Add configuration options
-- [ ] Add support for other OpenAI APIs
 - [ ] Add support for other AI APIs
 
 ## Contributing
@@ -63,7 +74,7 @@ We welcome contributions to this project. Please see our [contribution guideline
 
 ### Security
 
-If you discover any security related issues, please email <info@netresearch.de> instead of using the issue tracker!
+If you discover any security related issues, please email <developer@netresearch.de> instead of using the issue tracker!
 
 ### Contact
 
