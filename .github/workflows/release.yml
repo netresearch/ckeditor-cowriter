@@ -101,8 +101,8 @@ jobs:
       - name: ↹ Replace base URL in index.html
         run: /
           sed -i 's/\/dist/\/ckeditor-cowriter/' dist/index.html
-          sed -i 's/REPLACE_OPENAI_KEY/${{ secret.OPENAI_KEY }}/' dist/index.html
-          sed -i 's/REPLACE_OPENAI_ORG/${{ secret.OPENAI_ORG }}/' dist/index.html
+          sed -i 's/REPLACE_OPENAI_KEY/${{ secrets.OPENAI_KEY }}/' dist/index.html
+          sed -i 's/REPLACE_OPENAI_ORG/${{ secrets.OPENAI_ORG }}/' dist/index.html
       - name: 📦 Package for GitHub Pages
         uses: actions/upload-pages-artifact@v1
         with:
