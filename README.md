@@ -6,6 +6,8 @@ This plugin generates content with the help of artificial intelligence. It is ba
 
 ## Installation
 
+You can find the plugin in the CKEditor plugin directory: [https://ckeditor.com/cke4/addon/cowriter](https://ckeditor.com/cke4/addon/cowriter).
+
 ### Installation with npm
 
 1. Install the plugin with npm:

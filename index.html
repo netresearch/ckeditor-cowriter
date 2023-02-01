@@ -5,8 +5,11 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./icons/cash-register-color.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+        const OPENAI_KEY = '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'
+        const OPENAI_ORG = 'org-qLLugKuC4nlm4GDPy2QvOHA9'
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- <script src="https://cdn.ckeditor.com/4.20.1/standard-all/ckeditor.js"></script> -->
     <script src="https://cdn.ckeditor.com/4.20.1/basic/ckeditor.js"></script>
     <title>Ckeditor cowriter plugin</title>
 </head>
@@ -28,11 +31,8 @@
             It uses the <a href="https://beta.openai.com/">OpenAI API</a> to generate text.
         </p>
         <textarea id="editor" name="editor" rows="10" cols="50"></textarea>
-        <script src="./src/plugin.js"></script>
         <script>
-            const OPENAI_KEY = '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'
-            const OPENAI_ORG = 'org-qLLugKuC4nlm4GDPy2QvOHA9'
-
+            CKEDITOR.plugins.addExternal('cowriter', '/dist/', 'plugin.js')
             // CKeditor 4 settings
             CKEDITOR.replace('editor', {
                 extraPlugins: 'cowriter',
