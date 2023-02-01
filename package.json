@@ -1,7 +1,7 @@
 {
     "name": "@netresearch/ckeditor-cowriter",
     "description": "Use AI to help you writing with CKEditor 4",
-    "version": "0.1.15",
+    "version": "0.1.16",
     "type": "module",
     "license": "GPL-3.0-or-later",
     "private": false,
