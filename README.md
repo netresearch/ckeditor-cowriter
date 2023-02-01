@@ -4,6 +4,8 @@
 
 This plugin generates content with the help of artificial intelligence. It is based on the [CKEditor 4](http://ckeditor.com/). It uses the [OpenAI API](https://beta.openai.com/) to generate text.
 
+![Cowriter with TYPO3 CMS](https://github.com/netresearch/t3-cowriter/raw/main/Documentation/Images/t3-cowriter.gif)
+
 ## Installation
 
 You can find the plugin in the CKEditor plugin directory: [https://ckeditor.com/cke4/addon/cowriter](https://ckeditor.com/cke4/addon/cowriter).
