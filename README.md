@@ -28,6 +28,8 @@ You can find the plugin in the CKEditor plugin directory: [https://ckeditor.com/
 
         config.extraPlugins = 'cowriter';
 
+3. More information about the CDN can be found [here](https://cdn.ckeditor.com/).
+
 ### Installation from source
 
 1. Download the [latest release](https://github.com/netresearch/ckeditor-cowriter/releases) of the plugin.

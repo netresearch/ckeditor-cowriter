@@ -98,8 +98,8 @@ jobs:
         run: pnpm install --no-frozen-lockfile
       - name: 🔨 Build
         run: pnpm build
-      - name: Replace base URL in index.html
-        run: sed 's/\/dist//' dist/index.html > dist/index.html
+      - name: ↹ Replace base URL in index.html
+        run: sed -i 's/\/dist//' dist/index.html
       - name: 📦 Package for GitHub Pages
         uses: actions/upload-pages-artifact@v1
         with:
