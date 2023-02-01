@@ -99,7 +99,7 @@ jobs:
       - name: 🔨 Build
         run: pnpm build
       - name: ↹ Replace base URL in index.html
-        run: sed -i 's/\/dist/ckeditor-cowriter/' dist/index.html
+        run: sed -i 's/\/dist/\/ckeditor-cowriter/' dist/index.html
       - name: 📦 Package for GitHub Pages
         uses: actions/upload-pages-artifact@v1
         with:
