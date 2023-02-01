@@ -126,7 +126,7 @@ CKEDITOR.plugins.add('cowriter', {
             label: 'Co-Writer',
             command: 'cowriter',
             toolbar: 'insert',
-            icon: '/icons/cash-register.svg'
+            icon: './icons/cash-register.svg'
         })
     }
 })
