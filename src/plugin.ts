@@ -12,7 +12,7 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
         contents: [
             {
                 id: 'tab-basic',
-                label: editor.lang.common.generalTab,
+                label: editor.lang.cowriter.tabGeneral,
                 accessKey: 'C',
                 elements: [
                     {
@@ -67,13 +67,14 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
             },
             {
                 id: 'tab-advanced',
-                label: editor.lang.common.advancedTab,
+                label: editor.lang.cowriter.tabAdbvanced,
                 elements: [
                     // Add select field with options to choose the model from openai api.
                     {
                         type: 'select',
                         id: 'model',
-                        label: 'Wähle ein Modell',
+                        title: editor.lang.cowriter.modelSelction,
+                        label: editor.lang.cowriter.modelSelctionHelp,
                         default: 'text-davinci-003',
                         items: [
                             ['Davinci', 'text-davinci-003'],
