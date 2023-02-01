@@ -1,14 +1,9 @@
-// @ts-nocheck
-export { }
-
-
-
 // Add CKeditor 4 dialog plugin with one input field "cowriter" which add text from openai api.
 CKEDITOR.dialog.add('cowriterDialog', function (editor) {
 
     // Settings
-    const model = 'text-davinci-003' || CKEDITOR.dialog.getCurrent().getValueOf('tab-advanced', 'model')
-    const max_tokens = 4000 || CKEDITOR.dialog.getCurrent().getValueOf('tab-advanced', 'max_tokens')
+    var select_model = 'text-davinci-003' || CKEDITOR.dialog.getCurrent().getValueOf('tab-advanced', 'model')
+    var select_max_tokens = 4000 || CKEDITOR.dialog.getCurrent().getValueOf('tab-advanced', 'max_tokens')
 
     return {
         title: 'Cowriter',
@@ -29,37 +24,51 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
                         setup: function (element) {
                             this.setValue(element.getText())
                         },
-                        commit: async function (element) {
+                        commit: function (element) {
                             // Show loading animation
-                            element.setText(` Loading … `)
+                            element.setText(' Loading … ')
 
-                            // Get text from openai api
-                            const response = await fetch('https://api.openai.com/v1/completions', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'Authorization': 'Bearer ' + OPENAI_KEY,
-                                    'OpenAI-Organization': OPENAI_ORG
-                                },
-                                // @see https://platform.openai.com/docs/models/content-filter
-                                body: JSON.stringify({
-                                    prompt: this.getValue(), // Text to complete
-                                    max_tokens: max_tokens, // 1 to 4000
-                                    model: model, // 'text-davinci-003', 'text-curie-001', 'text-babbage-001', 'text-ada-001'
-                                    temperature: 0.9, // 0.0 is equivalent to greedy sampling
-                                    top_p: 1, // 1.0 is equivalent to greedy sampling
-                                    n: 1, // Number of results to return
-                                    frequency_penalty: 0, // 0.0 is equivalent to no penalty
-                                    presence_penalty: 0, // 0.0 is equivalent to no penalty
-                                })
-                            })
-                            const data = await response.json()
+                            // Use XMLHttpRequest to get the text from openai api.
+                            var xhr = new XMLHttpRequest()
+                            xhr.open('POST', 'https://api.openai.com/v1/completions', true)
+                            xhr.setRequestHeader('Content-Type', 'application/json')
 
-                            // Set text from openai api to element in editor if it is not empty.
-                            if (data.choices[0]?.text)
-                                element.setText(data.choices[0]?.text)
-                            else
-                                element.setText(' Error: ' + data.error)
+
+                            // Set the authorization header with your API key.
+                            xhr.setRequestHeader('Authorization', 'Bearer ' + OPENAI_KEY)
+                            xhr.setRequestHeader('OpenAI-Organization', OPENAI_ORG)
+
+                            // Send the request and set status to element in editor.
+                            xhr.send(JSON.stringify({
+                                prompt: this.getValue(), // Text to complete
+                                max_tokens: select_max_tokens, // 1 to 4000
+                                model: select_model, // 'text-davinci-003', 'text-curie-001', 'text-babbage-001', 'text-ada-001'
+                                temperature: 0.9, // 0.0 is equivalent to greedy sampling
+                                top_p: 1, // 1.0 is equivalent to greedy sampling
+                                n: 1, // Number of results to return
+                                frequency_penalty: 0, // 0.0 is equivalent to no penalty
+                                presence_penalty: 0, // 0.0 is equivalent to no penalty
+                            }))
+
+                            xhr.onreadystatechange = function () {
+                                if (this.readyState === 4) {
+                                    if (this.status === 200) {
+                                        // Set text from openai api to element in editor if it is not empty.
+                                        if (JSON.parse(this.responseText).choices[0].text)
+                                            element.setText(JSON.parse(this.responseText).choices[0].text)
+                                        else
+                                            element.setText(' Error: ' + JSON.parse(this.responseText).error)
+                                    } else {
+                                        element.setText(' Error: ' + this.responseText)
+                                    }
+                                }
+                            }
+
+                            // Catch error if openai api is not available.
+                            xhr.onerror = function () {
+                                element.setText(' Error: ' + this.responseText)
+                            }
+
 
                         }
                     },
@@ -92,8 +101,8 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
                         inputStyle: 'width: 50px',
                         id: 'max_tokens',
                         label: 'Wie viele Wörter sollen es werden?',
-                        default: max_tokens,
-                        validate: () => CKEDITOR.dialog.validate.regex(/^[1-9][0-9]{0,2}$/, "Deine Eingabe muss eine Zahl zwischen 1 und 1000 sein."),
+                        default: select_max_tokens,
+                        validate: function () {return CKEDITOR.dialog.validate.regex(/^[1-9][0-9]{0,2}$/, "Deine Eingabe muss eine Zahl zwischen 1 und 1000 sein.")},
                         setup: function (element) {
                             // Set type to number
                             element.setAttribute('title', 'number')

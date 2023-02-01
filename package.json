@@ -42,9 +42,10 @@
         "dev": "vite",
         "build": "tsc && vite build",
         "preview": "vite preview",
-        "release:patch": "pnpm run build && pnpm version patch && git push && git push --tags",
-        "release:minor": "pnpm run build && pnpm version minor && git push && git push --tags",
-        "release:major": "pnpm run build && pnpm version major && git push && git push --tags"
+        "release:patch": "pnpm release:check && pnpm version patch && git push && git push --tags",
+        "release:minor": "pnpm release:check && pnpm version minor && git push && git push --tags",
+        "release:major": "pnpm release:check && pnpm version major && git push && git push --tags",
+        "release:check": "pnpm build && wget -N https://github.com/ckeditor/ckbuilder/releases/download/2.4.3/ckbuilder.jar && java -jar ckbuilder.jar --no-ie-checks --verify-plugin ./dist"
     },
     "devDependencies": {
         "@types/ckeditor": "^4.9.10",
