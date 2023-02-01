@@ -3,7 +3,9 @@
 !/.github
 !/public
 !/src
+
 !/.gitignore
+!/CONTRIBUTE.md
 !/index.html
 !/package.json
 !/tsconfig.json

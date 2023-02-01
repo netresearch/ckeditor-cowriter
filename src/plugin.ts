@@ -1,10 +1,13 @@
 // @ts-nocheck
-
-
-export { }
+export {}
 
 // Add CKeditor 4 dialog plugin with one input field "cowriter" which add text from openai api.
 CKEDITOR.dialog.add('cowriterDialog', function (editor) {
+
+    // Settings
+    const model = 'text-davinci-003' || CKEDITOR.dialog.getCurrent().getValueOf('tab-advanced', 'model')
+    const max_tokens = 4000 || CKEDITOR.dialog.getCurrent().getValueOf('tab-advanced', 'max_tokens')
+
     return {
         title: 'Cowriter',
         minWidth: 400,
@@ -28,11 +31,6 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
                             // Show loading animation
                             element.setText(` Loading … `)
 
-                            // Settings
-                            // @todo Sett not used yet.
-                            const model = 'text-davinci-003' || CKEDITOR.dialog.getCurrent().getValueOf('tab-basic', 'model')
-                            const max_tokens = 3000 || CKEDITOR.dialog.getCurrent().getValueOf('tab-basic', 'max_tokens')
-
                             // Get text from openai api
                             const response = await fetch('https://api.openai.com/v1/completions', {
                                 method: 'POST',
@@ -41,19 +39,19 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
                                     'Authorization': 'Bearer ' + OPENAI_KEY,
                                     'OpenAI-Organization': OPENAI_ORG
                                 },
+                                // @see https://platform.openai.com/docs/models/content-filter
                                 body: JSON.stringify({
-                                    prompt: this.getValue(),
-                                    max_tokens: max_tokens,
-                                    model: model,
-                                    temperature: 0.9,
-                                    top_p: 1,
-                                    n: 1,
-                                    frequency_penalty: 0,
-                                    presence_penalty: 0,
+                                    prompt: this.getValue(), // Text to complete
+                                    max_tokens: max_tokens, // 1 to 4000
+                                    model: model, // 'text-davinci-003', 'text-curie-001', 'text-babbage-001', 'text-ada-001'
+                                    temperature: 0.9, // 0.0 is equivalent to greedy sampling
+                                    top_p: 1, // 1.0 is equivalent to greedy sampling
+                                    n: 1, // Number of results to return
+                                    frequency_penalty: 0, // 0.0 is equivalent to no penalty
+                                    presence_penalty: 0, // 0.0 is equivalent to no penalty
                                 })
                             })
                             const data = await response.json()
-                            console.log(data)
 
                             // Set text from openai api to element in editor if it is not empty.
                             if (data.choices[0]?.text)
@@ -92,7 +90,7 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
                         inputStyle: 'width: 50px',
                         id: 'max_tokens',
                         label: 'Wie viele Wörter sollen es werden?',
-                        default: 500,
+                        default: max_tokens,
                         validate: () => CKEDITOR.dialog.validate.regex(/^[1-9][0-9]{0,2}$/, "Deine Eingabe muss eine Zahl zwischen 1 und 1000 sein."),
                         setup: function (element) {
                             // Set type to number
