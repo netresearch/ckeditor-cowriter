@@ -2,52 +2,52 @@
 
 [![Release](https://github.com/netresearch/ckeditor-cowriter/actions/workflows/release.yml/badge.svg)](https://github.com/netresearch/ckeditor-cowriter/actions/workflows/release.yml)
 
-This plugin generates content with the help of artificial intelligence. It is based on the [CKEditor 4](http://ckeditor.com/). It uses the [OpenAI API](https://beta.openai.com/) to generate text.
+This plugin generates content with the help of artificial intelligence. It is based on the [CKEditor 4](http://ckeditor.com/). It uses the [OpenAI API](https://beta.openai.com/) to generate text. You can use it to generate text for your blog posts, emails, or any other content.
+Give it a try and let the AI write for you: [Demo](https://netresearch.github.io/ckeditor-cowriter/)
 
-![Cowriter with TYPO3 CMS](https://github.com/netresearch/t3-cowriter/raw/main/Documentation/Images/t3-cowriter.gif)
+![Cowriter with TYPO3 CMS](docs/images/ckditor-cowriter-animation-100.gif)
+
+[npm](https://www.npmjs.com/package/ckeditor-cowriter),
+[TYPO3 CMS](https://extensions.typo3.org/extension/cowriter/)
 
 ## Installation
 
-You can find the plugin in the CKEditor plugin directory: [https://ckeditor.com/cke4/addon/cowriter](https://ckeditor.com/cke4/addon/cowriter).
+You can find the plugin in the [CKEditor plugin directory](https://ckeditor.com/cke4/addon/cowriter)
 
-### Installation with npm
+### Installation with [npm](https://www.npmjs.com/package/@netresearch/ckeditor-cowriter)
 
 1. Install the plugin with npm:
 
-        npm install ckeditor-cowriter   
+    ```bash
+    npm install @netresearch/ckeditor-cowriter --save
+    ```
 
 2. Enable the plugin by using the `extraPlugins` configuration setting. For example:
 
-        config.extraPlugins = 'cowriter';
-
-### Installation from CDN
-
-1. Add the following script tag to your HTML page:
-
-        <script src="https://netresearch.github.io/ckeditor-cowriter/plugin.js"></script>
-
-2. Enable the plugin by using the `extraPlugins` configuration setting. For example:
-
-        config.extraPlugins = 'cowriter';
-
-3. More information about the CDN can be found [here](https://cdn.ckeditor.com/).
+    ```javascript
+    CKEDITOR.plugins.addExternal('cowriter', '/node_modules/@netresearch/ckeditor-cowriter/dist/', 'plugin.js')
+    CKEDITOR.config.extraPlugins = 'cowriter';
+    ```
 
 ### Installation from source
 
-1. Download the [latest release](https://github.com/netresearch/ckeditor-cowriter/releases) of the plugin.
-2. Extract the contents of the archive into the CKEditor 4 plugins directory.
-3. Enable the plugin by using the `extraPlugins` configuration setting. For example:
+1. Download the [latest release](https://ckeditor.com/cke4/addon/cowriter) of the plugin.
+2. Extract the contents of the archive into a directory. For example: `/plugins/cowriter/`
+3. Enable the plugin by using the `addExternal`and  `extraPlugins` configuration setting. For example:
 
-        config.extraPlugins = 'cowriter';
+    ```javascript
+    CKEDITOR.plugins.addExternal('cowriter', '/plugins/cowriter/', 'plugin.js')
+    CKEDITOR.config.extraPlugins = 'cowriter';
+    ```
 
 ## Configuration
 
-You need to define your OpenAI credentials.
+You need to define your OpenAI credentials. Do this above the `CKEDITOR.replace` call. For example:
 
-    ```javascript
-        const OPENAI_KEY = 'YOUR-KEY'
-        const OPENAI_ORG = 'org-YOUR-ORG-KEY'
-    ```
+```javascript
+const OPENAI_KEY = 'YOUR-KEY'
+const OPENAI_ORG = 'org-YOUR-ORG-KEY'
+```
 
 ## Usage
 
