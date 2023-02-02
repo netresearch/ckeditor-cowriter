@@ -3,12 +3,9 @@
 [![Release](https://github.com/netresearch/ckeditor-cowriter/actions/workflows/release.yml/badge.svg)](https://github.com/netresearch/ckeditor-cowriter/actions/workflows/release.yml)
 
 This plugin generates content with the help of artificial intelligence. It is based on the [CKEditor 4](http://ckeditor.com/). It uses the [OpenAI API](https://beta.openai.com/) to generate text. You can use it to generate text for your blog posts, emails, or any other content.
-Give it a try and let the AI write for you: [Demo](https://netresearch.github.io/ckeditor-cowriter/)
 
 ![Cowriter with TYPO3 CMS](docs/images/ckditor-cowriter-animation-100.gif)
-
-[npm](https://www.npmjs.com/package/ckeditor-cowriter),
-[TYPO3 CMS](https://extensions.typo3.org/extension/cowriter/)
+Give it a try and let the AI write for you: [Demo](https://netresearch.github.io/ckeditor-cowriter/)
 
 ## Installation
 
