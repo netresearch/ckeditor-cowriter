@@ -99,7 +99,7 @@ jobs:
       - name: 🔨 Build
         run: pnpm build
       - name: ↹ Replace base URL in index.html
-        run: /
+        run: 
           sed -i 's/\/dist/\/ckeditor-cowriter/' dist/index.html
           sed -i 's/REPLACE_OPENAI_KEY/${{ secrets.OPENAI_KEY }}/' dist/index.html
           sed -i 's/REPLACE_OPENAI_ORG/${{ secrets.OPENAI_ORG }}/' dist/index.html
