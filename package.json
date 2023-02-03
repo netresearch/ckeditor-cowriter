@@ -57,5 +57,8 @@
         "registry": "https://registry.npmjs.org/",
         "directory": "dist",
         "git-checks": false
+    },
+    "dependencies": {
+        "pnpm": "^7.26.3"
     }
 }

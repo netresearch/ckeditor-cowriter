@@ -31,15 +31,29 @@
             It uses the <a href="https://beta.openai.com/">OpenAI API</a> to generate text.
         </p>
         <textarea id="editor" name="editor" rows="10" cols="50"></textarea>
-        <script>
-            CKEDITOR.plugins.addExternal('cowriter', '/dist/', 'plugin.js')
-            // CKeditor 4 settings
-            CKEDITOR.replace('editor', {
-                extraPlugins: 'cowriter',
-                uiColor: '#bbbbbb',
-                height: 350,
-            });
-        </script>
+    </main>
+    <footer class=" flex justify-center mt-12">
+        <p class="text-center text-white text-sm py-4">
+            <a href="https://github.com/netresearch/ckeditor-cowriter" class="text-white hover:text-gray-200">GitHub</a>
+            |
+            <a href="https://www.npmjs.com/package/@netresearch/ckeditor-cowriter"
+                class="text-white  hover:text-gray-200">npm</a> |
+            <a href="https://ckeditor.com/cke4/addon/cowriter" class="text-white hover:text-gray-200 ">
+                CKEditor Plugin Listing
+            </a> |
+            <a href="https://www.netresearch.de/en/imprint/" class="text-white hover:text-gray-200">Imprint</a> |
+            <a href="https://www.netresearch.de/en/privacy-policy/" class="text-white hover:text-gray-200">Privacy
+                Policy</a>
+    </footer>
+    <script>
+        CKEDITOR.plugins.addExternal('cowriter', '/dist/', 'plugin.js')
+        // CKeditor 4 settings
+        CKEDITOR.replace('editor', {
+            extraPlugins: 'cowriter',
+            uiColor: '#bbbbbb',
+            height: 350,
+        });
+    </script>
 </body>
 
 </html>
