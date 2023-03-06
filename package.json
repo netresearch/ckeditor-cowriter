@@ -1,7 +1,7 @@
 {
     "name": "@netresearch/ckeditor-cowriter",
     "description": "Use AI to help you writing with CKEditor 4",
-    "version": "0.1.25",
+    "version": "0.1.27",
     "type": "module",
     "license": "GPL-3.0-or-later",
     "private": false,
@@ -9,6 +9,10 @@
         {
             "name": "André Lademann",
             "email": "andre.lademann@netresearch.de"
+        },
+        {
+            "name": "Martin Wunderlich",
+            "email": "martin.wunderlich@netresearch.de"
         }
     ],
     "homepage": "https://netresearch.github.io/ckeditor-cowriter/",
