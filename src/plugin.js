@@ -18,9 +18,9 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
                     {
                         type: 'textarea',
                         id: 'cowriter',
-                        label: 'Worüber soll ich schreiben?',
+                        label: editor.lang.cowriter.writeAbout || 'About what should I write?',
                         rows: 6,
-                        validate: CKEDITOR.dialog.validate.notEmpty("Deine Beschreibung darf nicht leer sein."),
+                        validate: CKEDITOR.dialog.validate.notEmpty(editor.lang.cowriter.errorNotEmpty),
                         setup: function (element) {
                             this.setValue(element.getText())
                         },
@@ -76,7 +76,7 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
             },
             {
                 id: 'tab-advanced',
-                label: editor.lang.cowriter.tabAdbvanced || 'Advanced',
+                label: editor.lang.cowriter.tabAdvanced || 'Advanced',
                 elements: [
                     // Add select field with options to choose the model from openai api.
                     {
@@ -100,9 +100,9 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
                         type: 'text',
                         inputStyle: 'width: 50px',
                         id: 'max_tokens',
-                        label: 'Wie viele Wörter sollen es werden?',
+                        label: editor.lang.cowriter.howManyWords || 'How many words do you want?',
                         default: select_max_tokens,
-                        validate: function () {return CKEDITOR.dialog.validate.regex(/^[1-9][0-9]{0,2}$/, "Deine Eingabe muss eine Zahl zwischen 1 und 1000 sein.")},
+                        validate: function () {return CKEDITOR.dialog.validate.regex(/^[1-9][0-9]{0,2}$/, editor.lang.cowriter.errorNotBetween)},
                         setup: function (element) {
                             // Set type to number
                             element.setAttribute('title', 'number')
@@ -144,9 +144,3 @@ CKEDITOR.plugins.add('cowriter', {
 CKEDITOR.config.keystrokes = [
     [CKEDITOR.ALT + 67, 'cowriter']
 ]
-
-CKEDITOR.plugins.setLang('cowriter', 'de', {
-    tabAdbvanced: 'Erweitert',
-    modelSelction: 'Modell',
-    modelSelctionHelp: 'Wählen Sie das Modell aus, das Sie verwenden möchten.',
-})
