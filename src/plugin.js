@@ -12,13 +12,13 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
         contents: [
             {
                 id: 'tab-basic',
-                label: editor.lang.cowriter.tabGeneral || 'General',
+                label: editor.lang.cowriter.tabGeneral,
                 accessKey: 'C',
                 elements: [
                     {
                         type: 'textarea',
                         id: 'cowriter',
-                        label: editor.lang.cowriter.writeAbout || 'About what should I write?',
+                        label: editor.lang.cowriter.writeAbout,
                         rows: 6,
                         validate: CKEDITOR.dialog.validate.notEmpty(editor.lang.cowriter.errorNotEmpty),
                         setup: function (element) {
@@ -76,14 +76,14 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
             },
             {
                 id: 'tab-advanced',
-                label: editor.lang.cowriter.tabAdvanced || 'Advanced',
+                label: editor.lang.cowriter.tabAdvanced,
                 elements: [
                     // Add select field with options to choose the model from openai api.
                     {
                         type: 'select',
                         id: 'model',
-                        title: editor.lang.cowriter.modelSelction || 'Model',
-                        label: editor.lang.cowriter.modelSelctionHelp || 'Model',
+                        title: editor.lang.cowriter.modelSelction,
+                        label: editor.lang.cowriter.modelSelctionHelp,
                         default: 'text-davinci-003',
                         items: [
                             ['Davinci', 'text-davinci-003'],
@@ -100,7 +100,7 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
                         type: 'text',
                         inputStyle: 'width: 50px',
                         id: 'max_tokens',
-                        label: editor.lang.cowriter.howManyWords || 'How many words do you want?',
+                        label: editor.lang.cowriter.howManyWords,
                         default: select_max_tokens,
                         validate: function () {return CKEDITOR.dialog.validate.regex(/^[1-9][0-9]{0,2}$/, editor.lang.cowriter.errorNotBetween)},
                         setup: function (element) {
