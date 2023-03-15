@@ -43,7 +43,7 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
                                 prompt: this.getValue(), // Text to complete
                                 max_tokens: select_max_tokens, // 1 to 4000
                                 model: select_model, // 'text-davinci-003', 'text-curie-001', 'text-babbage-001', 'text-ada-001'
-                                temperature: 0.9, // 0.0 is equivalent to greedy sampling
+                                temperature: 0.5, // 0.0 is equivalent to greedy sampling
                                 top_p: 1, // 1.0 is equivalent to greedy sampling
                                 n: 1, // Number of results to return
                                 frequency_penalty: 0, // 0.0 is equivalent to no penalty
