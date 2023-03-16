@@ -7,6 +7,10 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
         select_max_tokens = 4000,
         select_amount = 1;
 
+    const escapeHtml = (unsafe) => {
+        return unsafe.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
+    }
+
     return {
         title: 'Cowriter',
         minWidth: 400,
@@ -59,9 +63,9 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
                                         let completeText = '',
                                             choices = JSON.parse(this.responseText).choices;
                                         for (let i = 0; i < choices.length; i++) {
-                                            completeText += choices[i].text + '\n';
+                                            completeText += '<p>' + escapeHtml(choices[i].text) + '</p>';
                                         }
-                                        element.setText(completeText);
+                                        element.setHtml(completeText);
                                     } else {
                                         element.setText(' Error: ' + this.responseText)
                                     }
@@ -120,7 +124,7 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
                             this.setValue(element.getText());
                         },
                         commit: function (element) {
-                            element.setAttribute('type', 'number');
+
                         }
                     },
                     // Add select field for number of results
@@ -141,7 +145,7 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
                             this.setValue(element.getText());
                         },
                         commit: function (element) {
-                            element.setAttribute('type', 'number');
+
                         }
                     }
                 ]
@@ -149,7 +153,7 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
         ],
         onOk: function () {
             let dialog = this,
-                cowriter = editor.document.createElement('cowriter');
+                cowriter = editor.document.createElement('div');
 
             // overwrite default values with settings in dialog
             select_model = dialog.getValueOf('tab-advanced', 'model');
