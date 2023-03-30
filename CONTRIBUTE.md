@@ -18,6 +18,8 @@ We welcome contributions to this project. Please see our [contribution guideline
 2. Install pnpm with `npm install -g pnpm`.
 3. Install the dependencies with `pnpm install`.
 4. Run development server with `pnpm dev`.
+5. Adjust openai credentials in index.html or copy this file to have a gitignored test-page.
+6. If you want to create final dist-folder use `pnpm build`.
 
 ### Create pull request
 
