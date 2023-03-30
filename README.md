@@ -64,14 +64,6 @@ Licensed under the terms of the [GNU General Public License](http://www.gnu.org/
 - This plugin is based on the [CKEditor 4 Plugin - GPT-3](https://github.com/netresearch/ckeditor-cowriter/releases) by [Netresearch](https://www.netresearch.de/).
 - It uses Flaticon's [document](https://www.flaticon.com/) icon.
 
-## TODO
-
-- [x] Add documentation
-- [x] Add configuration options
-- [x] Add support for other OpenAI APIs
-- [ ] Add tests
-- [ ] Add support for other AI APIs
-
 ## Contributing
 
 We welcome contributions to this project. Please see our [contribution guidelines](CONTRIBUTING.md) for details.
