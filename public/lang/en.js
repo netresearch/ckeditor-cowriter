@@ -3,8 +3,10 @@ CKEDITOR.plugins.setLang('cowriter', 'en', {
     tabAdvanced: 'Advanced',
     writeAbout: 'About what should I write?',
     modelSelction: 'Model',
-    modelSelctionHelp: 'Please chose the model you want to use.',
-    howManyWords: 'How many words do you want?',
+    modelSelctionLabel: 'Please chose the model you want to use.',
+    temperature: 'Temperature',
+    temperatureLabel: 'Temperature from 0-2. The smaller the value the more reproducible the result.',
+    amount: 'Amount',
+    amountLabel: 'Amount of results.',
     errorNotEmpty: 'Your description must not be empty!',
-    errorNotBetween: 'Your input must be a number between 1 and 1000',
 })

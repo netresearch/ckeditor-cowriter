@@ -2,8 +2,14 @@
 CKEDITOR.dialog.add('cowriterDialog', function (editor) {
 
     // Settings
-    var select_model = 'text-davinci-003' || CKEDITOR.dialog.getCurrent().getValueOf('tab-advanced', 'model')
-    var select_max_tokens = 4000 || CKEDITOR.dialog.getCurrent().getValueOf('tab-advanced', 'max_tokens')
+    let select_model = 'text-davinci-003',
+        select_temperature = 0.5,
+        select_max_tokens = 4000,
+        select_amount = 1;
+
+    const escapeHtml = (unsafe) => {
+        return unsafe.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
+    }
 
     return {
         title: 'Cowriter',
@@ -43,9 +49,9 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
                                 prompt: this.getValue(), // Text to complete
                                 max_tokens: select_max_tokens, // 1 to 4000
                                 model: select_model, // 'text-davinci-003', 'text-curie-001', 'text-babbage-001', 'text-ada-001'
-                                temperature: 0.5, // 0.0 is equivalent to greedy sampling
+                                temperature: select_temperature, // 0.0 is equivalent to greedy sampling
                                 top_p: 1, // 1.0 is equivalent to greedy sampling
-                                n: 1, // Number of results to return
+                                n: select_amount, // Number of results to return
                                 frequency_penalty: 0, // 0.0 is equivalent to no penalty
                                 presence_penalty: 0, // 0.0 is equivalent to no penalty
                             }))
@@ -54,10 +60,12 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
                                 if (this.readyState === 4) {
                                     if (this.status === 200) {
                                         // Set text from openai api to element in editor if it is not empty.
-                                        if (JSON.parse(this.responseText).choices[0].text)
-                                            element.setText(JSON.parse(this.responseText).choices[0].text)
-                                        else
-                                            element.setText(' Error: ' + JSON.parse(this.responseText).error)
+                                        let completeText = '',
+                                            choices = JSON.parse(this.responseText).choices;
+                                        for (let i = 0; i < choices.length; i++) {
+                                            completeText += '<p>' + escapeHtml(choices[i].text) + '</p>';
+                                        }
+                                        element.setHtml(completeText);
                                     } else {
                                         element.setText(' Error: ' + this.responseText)
                                     }
@@ -68,8 +76,6 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
                             xhr.onerror = function () {
                                 element.setText(' Error: ' + this.responseText)
                             }
-
-
                         }
                     },
                 ]
@@ -83,7 +89,7 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
                         type: 'select',
                         id: 'model',
                         title: editor.lang.cowriter.modelSelction,
-                        label: editor.lang.cowriter.modelSelctionHelp,
+                        label: editor.lang.cowriter.modelSelctionLabel,
                         default: 'text-davinci-003',
                         items: [
                             ['Davinci', 'text-davinci-003'],
@@ -95,30 +101,81 @@ CKEDITOR.dialog.add('cowriterDialog', function (editor) {
                             this.setValue(element.getText())
                         }
                     },
-                    // Add input range field to enter the text length.
+                    // Add select field with different temperatures from 0 to 2
                     {
-                        type: 'text',
-                        inputStyle: 'width: 50px',
-                        id: 'max_tokens',
-                        label: editor.lang.cowriter.howManyWords,
-                        default: select_max_tokens,
-                        validate: function () {return CKEDITOR.dialog.validate.regex(/^[1-9][0-9]{0,2}$/, editor.lang.cowriter.errorNotBetween)},
+                        type: 'select',
+                        id: 'temperature',
+                        title: editor.lang.cowriter.temperature,
+                        label: editor.lang.cowriter.temperatureLabel,
+                        default: 0.5,
+                        items: [
+                            ['0.0', 0.01],
+                            ['0.25', 0.25],
+                            ['0.5', 0.5],
+                            ['0.75', 0.75],
+                            ['1.0', 1.0],
+                            ['1.25', 1.25],
+                            ['1.5', 1.5],
+                            ['1.75', 1.75],
+                            ['2.0', 2.0]
+                        ],
                         setup: function (element) {
-                            // Set type to number
-                            element.setAttribute('title', 'number')
-                            this.setValue(element.getText())
+                            element.setAttribute('type', 'number');
+                            this.setValue(element.getText());
                         },
                         commit: function (element) {
-                            element.setAttribute('type', 'number')
+
                         }
                     },
+                    // Add select field for number of results
+                    {
+                        type: 'select',
+                        id: 'amount',
+                        title: editor.lang.cowriter.amount,
+                        label: editor.lang.cowriter.amountLabel,
+                        default: 1,
+                        items: [
+                            ['1', 1],
+                            ['2', 2],
+                            ['3', 3],
+                            ['4', 4]
+                        ],
+                        setup: function (element) {
+                            element.setAttribute('type', 'number');
+                            this.setValue(element.getText());
+                        },
+                        commit: function (element) {
 
+                        }
+                    }
                 ]
             }
         ],
         onOk: function () {
-            var dialog = this
-            var cowriter = editor.document.createElement('cowriter')
+            let dialog = this,
+                cowriter = editor.document.createElement('div');
+
+            // overwrite default values with settings in dialog
+            select_model = dialog.getValueOf('tab-advanced', 'model');
+            select_temperature = parseFloat(dialog.getValueOf('tab-advanced', 'temperature'));
+            select_amount = parseInt(dialog.getValueOf('tab-advanced', 'amount'));
+            // set max_tokens according to chosen model
+            switch(select_model) {
+                case 'text-davinci-003':
+                    select_max_tokens = 4000;
+                    break;
+                case 'text-curie-001':
+                    select_max_tokens = 2000;
+                    break;
+                case 'text-babbage-001':
+                    select_max_tokens = 2000;
+                    break;
+                case 'text-ada-001':
+                    select_max_tokens = 2000;
+                    break;
+                default:
+                    select_max_tokens = 4000;
+            }
             dialog.commitContent(cowriter)
             editor.insertElement(cowriter)
         }
