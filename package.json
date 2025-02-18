@@ -63,6 +63,6 @@
         "git-checks": false
     },
     "dependencies": {
-        "pnpm": "^8.1.0"
+        "pnpm": "^9.0.0"
     }
 }
