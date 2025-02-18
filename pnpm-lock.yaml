@@ -20,7 +20,7 @@ importers:
         version: 5.7.3
       vite:
         specifier: ^4.0.4
-        version: 4.5.6
+        version: 4.5.9
     publishDirectory: dist
 
 packages:
@@ -201,8 +201,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  vite@4.5.6:
-    resolution: {integrity: sha512-ElBNuVvJKslxcfY2gMmae5IjaKGqCYGicCNZ+8R56sAznobeE3pI9ctzI17cBS/6OJh5YuQNMSN4BP4dRjugBg==}
+  vite@4.5.9:
+    resolution: {integrity: sha512-qK9W4xjgD3gXbC0NmdNFFnVFLMWSNiR3swj957yutwzzN16xF/E7nmtAyp1rT9hviDroQANjE4HK3H4WqWdFtw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -349,7 +349,7 @@ snapshots:
 
   typescript@5.7.3: {}
 
-  vite@4.5.6:
+  vite@4.5.9:
     dependencies:
       esbuild: 0.18.20
       postcss: 8.5.2
