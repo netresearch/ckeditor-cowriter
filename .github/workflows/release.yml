@@ -104,7 +104,7 @@ jobs:
           sed -i 's/REPLACE_OPENAI_KEY/${{ secrets.OPENAI_KEY }}/' dist/index.html
           sed -i 's/REPLACE_OPENAI_ORG/${{ secrets.OPENAI_ORG }}/' dist/index.html
       - name: 📦 Package for GitHub Pages
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
           path: './dist/'
       - name: 📄 Setup Pages
