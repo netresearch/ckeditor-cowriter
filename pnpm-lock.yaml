@@ -10,7 +10,7 @@ importers:
     dependencies:
       pnpm:
         specifier: ^10.0.0
-        version: 10.12.4
+        version: 10.14.0
     devDependencies:
       '@types/ckeditor':
         specifier: ^4.9.10
@@ -311,8 +311,8 @@ packages:
     resolution: {integrity: sha512-M7BAV6Rlcy5u+m6oPhAPFgJTzAioX/6B0DxyvDlo9l8+T3nLKbrczg2WLUyzd45L8RqfUMyGPzekbMvX2Ldkwg==}
     engines: {node: '>=12'}
 
-  pnpm@10.12.4:
-    resolution: {integrity: sha512-Xqiw3u2U7WhpHJutTJVUknBcXuuKh++GvGLHSiawN7CP+VcPEIsuTb0d0akYb+qSXlJ/FBxkjoWvRWMQdGgBhA==}
+  pnpm@10.14.0:
+    resolution: {integrity: sha512-rSenlkG0nD5IGhaoBbqnGBegS74Go40X5g4urug/ahRsamiBJfV5LkjdW6MOfaUqXNpMOZK5zPMz+c4iOvhHSA==}
     engines: {node: '>=18.12'}
     hasBin: true
 
@@ -562,7 +562,7 @@ snapshots:
 
   picomatch@4.0.2: {}
 
-  pnpm@10.12.4: {}
+  pnpm@10.14.0: {}
 
   postcss@8.5.6:
     dependencies:
