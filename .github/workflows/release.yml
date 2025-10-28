@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-node@v6
         with:
           registry-url: https://registry.npmjs.org/
-          node-version: 22
+          node-version: 24
           scope: '@netresearch'
           access: public
           tag: latest
@@ -40,7 +40,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
           registry-url: 'https://npm.pkg.github.com'
           scope: '@netresearch'
       - name: ☁️ Publish to GitHub Package Registry
@@ -88,7 +88,7 @@ jobs:
         uses: actions/setup-node@v6
         with:
           registry-url: https://registry.npmjs.org/
-          node-version: 22
+          node-version: 24
           scope: '@netresearch'
           access: public
           tag: latest
